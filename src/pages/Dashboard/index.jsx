@@ -34,7 +34,6 @@ const DashBoard = () => {
           <SalesChart />
         </aside>  
       </div>
-
     </div>
   )
 }
