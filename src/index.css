@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main-container {
+  @apply bg-white;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.nav-icon {
+  @apply block text-center transition-transform transform hover:scale-105;
+}
