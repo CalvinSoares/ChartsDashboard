@@ -16,11 +16,11 @@ const UsersTable = () => {
       <table className=" divide-y divide-gray-200">
         <thead className="bg-[#161717]">
           <tr className="">
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">Nome</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data de Login</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compras</th>
+            <th className="px-6 py-7 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">Nome</th>
+            <th className="px-6 py-7 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+            <th className="px-6 py-7 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th className="px-6 py-7 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data de Login</th>
+            <th className="px-6 py-7 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compras</th>
           </tr>
         </thead>
         <tbody className="bg-[#161717] divide-y divide-gray-200">

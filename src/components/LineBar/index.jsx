@@ -27,13 +27,18 @@ const LineChart = () => {
             data: salesData.map((item) => item.date)
           },
           yAxis: {
-            type: 'value'
+            type: 'value',
+            splitLine: {
+              show: false
+            }
           },
+          
           series: [
             {
               data: salesData.map((total) => total.amount),
               type: 'line',
               smooth: true,
+              
             },
             
           ],

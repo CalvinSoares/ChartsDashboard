@@ -7,8 +7,8 @@ const option = {
     trigger: 'item'
   },
   legend: {
-    left: '70%',
-    top: '35%',
+    left: '65%',
+    top: '38%',
     orient: "vertical",
     itemHeight: 16,
     itemWidth: 20,
@@ -37,16 +37,17 @@ const option = {
         show: false
       },
       data: [
+        { value: 2000, name: 'boleto' },
         { value: 5000, name: 'cartão' },
         { value: 3000, name: 'pix' },
-        { value: 2000, name: 'boleto' },
       ],
-      height: "90%",
-      width: "75%",
-      top: "4%"
+      height: "100%",
+      width: "55%",
+      top: "8%",
+      left: "10%",
     }
   ]
 }; 
-return <ReactEcharts option={option} className="w-[300px] my-12 "/>;
+return <ReactEcharts option={option} style={{ height: '200px' }} className="w-[300px] bottom-28"/>;
 } 
 export default SalesChart;
