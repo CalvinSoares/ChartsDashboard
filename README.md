@@ -1,8 +1,10 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align="center">DashBoard Page</h1>
 
-Currently, two official plugins are available:
+[![Site preview](https://github.com/CalvinSoares/ChartsDashboard/assets/99036067/788b102d-aa6f-4355-8a63-d91093848c3e)](https://vercel.com/calvin-soares-projects/charts-dashboard)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologias utilizadas: 
+
+* **REACT JS**
+* **TAILWIND**
+* **ECHARTS**
