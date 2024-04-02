@@ -2,14 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import Rotas from './routes.jsx'
-import { BrowserRouter as Router } from 'react-router-dom'
+import AuthProvider from 'react-auth-kit'
+import store from './services/store.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-
-      <Router>
+    <AuthProvider
+      authName={'_auth'}
+      cookieDomain={window.location.hostname}
+      cookieSecure={true}
+      store={store}
+    >
         <Rotas />
-      </Router>   
-
+    </AuthProvider>
   </React.StrictMode>,
 )

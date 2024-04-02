@@ -1,63 +1,104 @@
 import login from '../../assets/login.svg'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
+import axios, { AxiosError } from 'axios'
+import { toast } from 'react-toastify';
 
 const Login = () => {
-    const navigate = useNavigate()
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    })
+    const signIn = useSignIn();
+    const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+      } = useForm()
+
+    const onSubmit = async (values) => {
+        const loginUser = async () => { 
+            console.log('values: ', values)
+            try {
+                const responseApi = await axios.post(
+                    'http://localhost:3000/auth/login',
+                    values
+                )
+                signIn({
+                    auth: {
+                        token: responseApi.data.token,
+                        type: "Bearer",
+                        expiresIn: 3600
+                    },
+                    userState: values
+                })
+
+                navigate('/dashboard');
+            } catch (err) {
+                if (err && err instanceof AxiosError) {
+                  toast.error('Erro no login', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light'
+                  })
+                } else if (err && err instanceof Error) {
+                  toast.error('Erro no login', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light'
+                  })
+                }
+              }
+        }
+        loginUser()
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const isAuthenticated = formData.username !== '' && formData.password !== '';
-
-        if (isAuthenticated) {
-            navigate('/dashboard');
-        } else {
-            alert('Por favor, insira seu usuário e senha.');
-        }
-    };
 
     return (
         <section className="h-screen bg-[#242424]">
             <div className="container h-full px-6 py-24">
                 <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
-                    <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
+                    <div className="mb-12 md:mb-0 md:w-6/12 lg:w-6/12">
                         <img src={login} className="w-full" alt="Phone image" />
                     </div>
-                    <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                <input
-                                    type="text"
-                                    name="username"
-                                    value={formData.username}
-                                    onChange={handleChange}
-                                    placeholder='Digite seu usuário..'
-                                    className="mb-6 w-full mt-2 h-12 px-4 bg-transparent border-b text-gray-200"
-                                    autoComplete="username"
-                                />
+                    <div className="md:w-6/12 lg:ml-6 lg:w-5/12">
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className='flex flex-wrap items-center justify-center font-poppins mb-12'>
+                                <h1 className='text-white text-4xl'>Login</h1>
                             </div>
-                            <div>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    placeholder='Digite sua senha..'
-                                    className="mb-6 w-full mt-2 h-12 px-4 bg-transparent border-b outiline-none text-gray-200"
-                                    autoComplete="current-password"
-                                />
-                            </div>
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"                              
+                                placeholder='Digite seu e-mail..'
+                                autoComplete="email"
+                                className="mb-6 w-full mt-2 h-12 px-4 bg-transparent border-b text-gray-200"
+                                {...register('email', { required: true })}
+
+                            />
+                            {errors.email && <p className="text-black">Campo obrigatório</p>}
+
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder='Digite sua senha..'
+                                autoComplete="current-password"
+                                className="mb-6 w-full mt-2 h-12 px-4 bg-transparent border-b text-gray-200"
+                                {...register('password', { required: true })}
+
+                            />
+                            {errors.password && <p className="text-black">Campo obrigatório</p>}
+
                             <div className="w-full">
                                 <button
                                     type="submit"
@@ -74,7 +115,7 @@ const Login = () => {
                         </div>
                         <div className="w-full">
                             <button
-                                onClick={() => navigate('/signup')}
+                                onClick={() => navigate('/register')}
                                 className="inline-block w-full rounded bg-fuchsia-400 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-black"
                             >
                                 Cadastre-se

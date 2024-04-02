@@ -1,10 +1,11 @@
 import Search from "../SearchInfo"
 import { IoIosArrowDown } from "react-icons/io";
 import User from '../../assets/User.jpg'
-import { Link } from "react-router-dom";
+import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import { VscAccount } from "react-icons/vsc";
 import { AiOutlineLogout } from "react-icons/ai";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const dados = [
     {
@@ -14,7 +15,17 @@ const dados = [
 ]
 
 const Header = ({title}) => {
-    const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const signOut = useSignOut();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    signOut();
+    navigate('/login')
+  }
+
+
   return (
     <nav className="p-2 pt-6 bg-[#242424]" >
         <div className="flex items-center justify-between">
@@ -50,6 +61,7 @@ const Header = ({title}) => {
                 <p className="text-white ml-2">Conta</p>
               </div>
               <div
+              onClick={handleClick}
                 className="px-4 py-2 text-gray-800 hover:bg-slate-900 hover:rounded-xl cursor-pointer flex justify-center  items-center gap-1"
               >
                 <AiOutlineLogout className="text-white" size={24} /> 

@@ -6,7 +6,7 @@ import LineChart from "../../components/LineBar";
 import UsersField from "../../components/UsersField";
 import UsersTable from "../../components/Table";
 
-const DashBoard = () => {    
+const Dashboard = () => {    
   return (
     <div className="bg-[#242424] h-screen">
       <Header title="Dashboard"/>
@@ -50,4 +50,4 @@ const DashBoard = () => {
   )
 }
 
-export default DashBoard
+export default Dashboard
